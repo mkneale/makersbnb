@@ -3,7 +3,6 @@
 require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
-require_relative 'test_database_helper'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
                                                                  SimpleCov::Formatter::Console
