@@ -17,10 +17,10 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/add_a_listing' do
-    @space = Space.add(name: params[:name])
+    @space = Space.add(name: params[:name], description: params[:description], ppn: params[:ppn], start_date: params[:start_date], end_date: params[:end_date])
     p "This is supposed to be a space#{@space}"
     p "post add a listing"
-    redirect "/book_a_space?space_name=#{@space.name}"
+    redirect "/book_a_space"
   end
 
   get '/book_a_space' do

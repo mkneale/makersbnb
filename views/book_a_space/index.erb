@@ -1,6 +1,9 @@
 <h1> Book a space </h1>
 <ul>
   <% @spaces.each do |space| %>
-    <li><%= space.name %></li>
+    <li>Name: <%= space.name %> Description: <%= space.description %>
+      Price per night: £<%= space.ppn %> Available from: <%= space.start_date %>
+      Available to: <%= space.end_date %> 
+    </li>
   <% end %>
 </ul>

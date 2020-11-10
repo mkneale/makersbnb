@@ -3,7 +3,7 @@ require 'space'
 RSpec.describe Space do
   describe '#add' do
     it 'adds a space to the listings' do
-      space = Space.add(name: "Hairy Hotel")
+      space = Space.add(name: "Hairy Hotel", description: "Wow. Hair everywhere", ppn: 60, start_date: '2020-10-15', end_date: '2020-10-16')
 
       p_data = persisted_data(id: space.id)
 
@@ -12,8 +12,8 @@ RSpec.describe Space do
   end
   describe '#all' do
     it 'lists all spaces' do
-      space1 = Space.add(name: "Hairy Hotel")
-      space2 = Space.add(name: "Hairier Hotel")
+      space1 = Space.add(name: "Hairy Hotel", description: "Super Hairy", ppn: 59, start_date: '2020-10-15', end_date: '2020-10-15')
+      space2 = Space.add(name: "Hairier Hotel", description: "Woah, This is crazy hairy", ppn: 60, start_date: '2020-11-16', end_date: '2020-11-17')
       expect(Space.all.first.name).to eq "Hairy Hotel"
     end
   end
