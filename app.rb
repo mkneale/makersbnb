@@ -3,12 +3,14 @@
 require 'sinatra/base'
 require './db_connection_setup'
 require './lib/space'
+require './lib/user'
 
 # This is my new class
 class Makersbnb < Sinatra::Base
   enable :sessions
   get '/' do
-    erb :index
+    'Temporary test'
+    # erb :index
   end
 
   get '/add_a_listing' do
@@ -23,19 +25,15 @@ class Makersbnb < Sinatra::Base
   get '/book_a_space' do
     @space = session[:space]
     erb :'book_a_space/index'
+  end
 
   get '/users/new' do
     erb :"users/new"
   end
 
-  post '/users' do 
+  post '/users' do
+    Customer.create(email:params[:email], password: params[:password])
     redirect '/'
-  end 
-
-  post 'users' do
-    User.create(email:params[:email], password: params[:password])
-    redirect '/'
-
   end
 
   run! if app_file == $PROGRAM_NAME
