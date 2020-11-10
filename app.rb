@@ -7,36 +7,41 @@ require './lib/space'
 # This is my new class
 class Makersbnb < Sinatra::Base
   enable :sessions
-  get '/' do
-    erb :index
-  end
+  # get '/' do
+  #   erb :index
+  # end
 
   get '/add_a_listing' do
+    p "get add a listing"
     erb :'add_a_listing/index'
   end
 
   post '/add_a_listing' do
-    session[:space] = Space.add(name: params[:name])
-    redirect '/book_a_space'
+    @space = Space.add(name: params[:name])
+    p "This is supposed to be a space#{@space}"
+    p "post add a listing"
+    redirect "/book_a_space?space_name=#{@space.name}"
   end
 
   get '/book_a_space' do
-    @space = session[:space]
+    @spaces = Space.all
+    p "get book a space"
     erb :'book_a_space/index'
-
-  get '/users/new' do
-    erb :"users/new"
   end
 
-  post '/users' do 
-    redirect '/'
-  end 
-
-  post 'users' do
-    User.create(email:params[:email], password: params[:password])
-    redirect '/'
-
-  end
+  # get '/users/new' do
+  #   erb :"users/new"
+  # end
+  #
+  # post '/users' do
+  #   redirect '/'
+  # end
+  #
+  # post 'users' do
+  #   User.create(email:params[:email], password: params[:password])
+  #   redirect '/'
+  #
+  # end
 
   run! if app_file == $PROGRAM_NAME
 end
