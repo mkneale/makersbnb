@@ -1,3 +1,5 @@
+require 'pg'
+
 class DBConnection
   def self.setup(database)
     @con = PG.connect(dbname: test_or_dev_db(database))
