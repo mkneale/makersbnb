@@ -1,3 +1,3 @@
-require './lib/db_connection.rb'
+require_relative './lib/db_connection.rb'
 
-DBConnection.setup("bookmark_manager")
+DBConnection.setup("makersbnb")

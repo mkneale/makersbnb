@@ -1,6 +1,2 @@
 CREATE DATABASE makersbnb;
 CREATE DATABASE makersbnb_test;
-
-#hello test
-
-#zoe test

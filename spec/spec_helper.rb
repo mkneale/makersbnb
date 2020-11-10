@@ -3,6 +3,7 @@
 require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
+require './helpers/test_database_helper'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
                                                                  SimpleCov::Formatter::Console
@@ -39,6 +40,7 @@ RSpec.configure do |config|
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
   config.before(:each) do
+    truncate_table('space')
 
   end
   config.expect_with :rspec do |expectations|
