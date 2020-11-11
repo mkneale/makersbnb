@@ -33,5 +33,16 @@
 * Blah
 * Blah
 
+### Day 2
+> Lesson learned: Don't `git add .` in a merge in the command line before committing. Only the files that had conflicts!
+#### Space
+* Added functionality for listing spaces within a time range
+#### Customer
+* Blah
+#### After Lunch
+* Attempted a merge of the two branches, `user_reg` and `space` onto the main branch
+* Slip up halfway through the merge conflict where we added all files to the commit rather than just the manually resolved conflicted ones
+* Eddie and Leo guided us through restoring the `space` branch that we deleted after the initial merge, resetting our main branch back to what it was before lunch, then attempting another merge of the two branches one by one. There were many hurdles that we got over so lots was learned.
+
 ## Entity Relationship Diagram
 ![ERD](https://github.com/olliekennedy/makersbnb/blob/main/db/entity_relationship_diagram.png?raw=true)
