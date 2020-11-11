@@ -22,13 +22,20 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/add_a_listing' do
-    session[:space] = Space.add(name: params[:name])
-    redirect '/book_a_space'
+    @space = Space.add(
+      name: params[:name],
+      description: params[:description],
+      ppn: params[:ppn],
+      start_date: params[:start_date],
+      end_date: params[:end_date]
+    )
+    redirect "/book_a_space"
   end
 
   get '/book_a_space' do
-    @space = session[:space]
+    @spaces = Space.all(params[:start_date], params[:end_date])
     erb :'book_a_space/index'
+
   end
 
   get '/users/new' do
@@ -44,7 +51,28 @@ class Makersbnb < Sinatra::Base
       flash[:notice] = "Passwords don't match"
       redirect '/users/new'
     end
+    
   end
+
+  post '/book_a_space' do
+    #start_date end_date
+    redirect "/book_a_space?start_date=#{params[:start_date]}&end_date=#{params[:end_date]}"
+
+  end
+
+  # get '/users/new' do
+  #   erb :"users/new"
+  # end
+  #
+  # post '/users' do
+  #   redirect '/'
+  # end
+  #
+  # post 'users' do
+  #   User.create(email:params[:email], password: params[:password])
+  #   redirect '/'
+  #
+  # end
 
   run! if app_file == $PROGRAM_NAME
 end

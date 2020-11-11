@@ -19,11 +19,19 @@
 * Created team Trello board with some user stories.
 * Defined fundamental components of the application - file structure, database design and gem installation.
 * Created ERD and database - good for everyone to have a solid, agreed understanding.
-* Defined Day 2's pairs, assigned `listings` to one pair and `users` to the other.
+* Defined Day 2's pairs, assigned `space` to one pair and `customer` to the other.
 
 ### Day 2
+> Lesson learned: Be careful of merging too early, especially with failing tests.
+#### Space
+* Created `/add_a_listing` route along with a `Space#add` method and simple views
+* Created `/book_a_space` route and `Space#all` to list spaces
+* Lots of roadblocks after merging at lunchtime
 
-_-_-_-_
+#### Customer
+* Blah
+* Blah
+* Blah
 
 ## Entity Relationship Diagram
 ![ERD](https://github.com/olliekennedy/makersbnb/blob/main/db/entity_relationship_diagram.png?raw=true)
