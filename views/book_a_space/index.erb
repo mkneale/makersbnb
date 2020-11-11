@@ -1,9 +1,20 @@
 <h1> Book a space </h1>
+<form action='/add_a_listing'>
+  <input type='submit' value='List a space'>
+</form>
+<form action='/book_a_space' method='post'>
+  <input type='date' name='start_date'>
+  <input type='date' name='end_date'>
+  <input type='submit' value='List Spaces'>
+</form>
 <ul>
   <% @spaces.each do |space| %>
-    <li>Name: <%= space.name %> Description: <%= space.description %>
-      Price per night: £<%= space.ppn %> Available from: <%= space.start_date %>
-      Available to: <%= space.end_date %> 
+    <li>
+      Name: <%= space.name %>
+      Description: <%= space.description %>
+      Price per night: £<%= space.ppn %>
+      Available from: <%= space.start_date %>
+      Available to: <%= space.end_date %>
     </li>
   <% end %>
 </ul>
