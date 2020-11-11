@@ -8,7 +8,6 @@ require 'uri'
 require 'sinatra'
 require 'sinatra/flash'
 
-
 # This is my new class
 class Makersbnb < Sinatra::Base
   enable :sessions
@@ -36,7 +35,7 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/' do
-    erb :"users/new"
+    erb :index
   end
 
   post '/users' do
@@ -60,23 +59,8 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/book_a_space' do
-    #start_date end_date
     redirect "/book_a_space?start_date=#{params[:start_date]}&end_date=#{params[:end_date]}"
   end
-
-  # get '/users/new' do
-  #   erb :"users/new"
-  # end
-  #
-  # post '/users' do
-  #   redirect '/'
-  # end
-  #
-  # post 'users' do
-  #   User.create(email:params[:email], password: params[:password])
-  #   redirect '/'
-  #
-  # end
 
   run! if app_file == $PROGRAM_NAME
 end
