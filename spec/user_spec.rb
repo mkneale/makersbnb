@@ -3,7 +3,6 @@ require_relative './helpers/db_helpers.rb'
 describe 'create' do 
   it 'creates a new user' do
     customer = Customer.create(email: 'test@example.com' , password: 'password123')
-    # p customer.inspect
     persisted_data = persisted_data_customers(id: customer.customer_id)
     
     p "Hello"

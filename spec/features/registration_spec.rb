@@ -16,6 +16,6 @@ feature 'registration' do
     fill_in('password_confirmation', with: 'password321')
     click_button('Sign up')
 
-    expect(page).to have_content "Password don't match"
+    expect(page).to have_content "Passwords don't match"
   end
 end

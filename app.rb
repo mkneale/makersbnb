@@ -4,13 +4,17 @@ require 'sinatra/base'
 require './db_connection_setup'
 require './lib/space'
 require './lib/user'
+require 'uri'
+require 'sinatra'
+require 'sinatra/flash'
+
 
 # This is my new class
 class Makersbnb < Sinatra::Base
   enable :sessions
+  register Sinatra::Flash
   get '/' do
     'Temporary test'
-    # erb :index
   end
 
   get '/add_a_listing' do
@@ -32,8 +36,13 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/users' do
-    Customer.create(email:params[:email], password: params[:password])
-    redirect '/'
+    if params['password'] ==params['password_confirmation']
+      Customer.create(email:params[:email], password: params[:password])
+      redirect '/'
+    else
+      flash[:notice] = "Passwords don't match"
+      redirect '/users/new'
+    end
   end
 
   run! if app_file == $PROGRAM_NAME
