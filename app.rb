@@ -12,7 +12,9 @@ require 'sinatra/flash'
 # This is my new class
 class Makersbnb < Sinatra::Base
   enable :sessions
+  set :session_secret, 'why am I needed'
   register Sinatra::Flash
+
   get '/' do
     'Temporary test'
   end
