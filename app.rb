@@ -62,5 +62,14 @@ class Makersbnb < Sinatra::Base
     redirect "/book_a_space?start_date=#{params[:start_date]}&end_date=#{params[:end_date]}"
   end
 
+  get '/requests' do
+    erb :'requests/index'
+  end
+
+  post '/sign_out' do
+    # do something in the db
+    redirect '/'
+  end
+
   run! if app_file == $PROGRAM_NAME
 end
