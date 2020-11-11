@@ -15,10 +15,6 @@ class Makersbnb < Sinatra::Base
   set :session_secret, 'why am I needed'
   register Sinatra::Flash
 
-  get '/' do
-    'Temporary test'
-  end
-
   get '/add_a_listing' do
     erb :'add_a_listing/index'
   end
@@ -39,7 +35,7 @@ class Makersbnb < Sinatra::Base
     erb :'book_a_space/index'
   end
 
-  get '/users/new' do
+  get '/' do
     erb :"users/new"
   end
 
@@ -47,11 +43,20 @@ class Makersbnb < Sinatra::Base
     if params['password'] == params['password_confirmation']
       customer = Customer.create(email:params[:email], password: params[:password])
       session[:customer_id] = customer.customer_id
-      redirect '/'
+      redirect '/book_a_space'
     else
       flash[:notice] = "Passwords don't match"
-      redirect '/users/new'
+      redirect '/'
     end
+  end
+
+  get '/login' do
+    erb :'login/index'
+  end
+
+  post '/login' do
+    # do something in the db
+    redirect '/book_a_space'
   end
 
   post '/book_a_space' do

@@ -1,0 +1,14 @@
+feature 'login page' do
+  scenario 'log someone in' do
+    visit '/'
+    fill_in('email', with: 'test@example.com')
+    fill_in('password', with: 'password123')
+    fill_in('password_confirmation', with: 'password123')
+    click_on('Sign up')
+    visit '/login'
+    fill_in 'email', with: 'sdajsnv@gmail.com'
+    fill_in 'password', with: 'test'
+    click_on('Login')
+    expect(page).to have_current_path('/book_a_space')
+  end
+end
