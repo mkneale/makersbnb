@@ -36,8 +36,9 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/users' do
-    if params['password'] ==params['password_confirmation']
-      Customer.create(email:params[:email], password: params[:password])
+    if params['password'] == params['password_confirmation']
+      customer = Customer.create(email:params[:email], password: params[:password])
+      session[:customer_id] = customer.customer_id
       redirect '/'
     else
       flash[:notice] = "Passwords don't match"

@@ -14,4 +14,9 @@ describe 'create' do
     expect(customer.email).to eq 'test@example.com'
     
   end
+
+  it 'encrypts the password' do
+    expect(BCrypt::Password).to receive(:create).with('password123')
+    Customer.create(email: 'test@example.com', password: 'password123')
+  end
 end
