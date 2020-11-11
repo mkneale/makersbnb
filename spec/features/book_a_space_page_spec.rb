@@ -1,16 +1,4 @@
 feature 'book a space page' do
-#   scenario 'see all spaces' do
-#     visit '/add_a_listing'
-#     fill_in 'name', with: "Hairy Hotel"
-#
-#     click_on('Submit')
-#     visit '/add_a_listing'
-#     fill_in 'name', with: "Hairier Hotel"
-#     click_on('Submit')
-#     visit '/book_a_space'
-#     expect(page).to have_content "Hairy Hotel"
-#     expect(page).to have_content "Hairier Hotel"
-#   end
   scenario 'button to go to list a space' do
     visit '/book_a_space'
     click_on('List a space')
@@ -26,4 +14,24 @@ feature 'book a space page' do
     expect(page).not_to have_content('Hairier Hotel')
   end
 
+  scenario 'spaces button should redirect to spaces page' do
+    visit '/book_a_space'
+    click_on 'Spaces'
+
+    expect(page).to have_current_path('/book_a_space')
+  end
+
+  scenario 'requests button should redirect to requests page' do
+    visit '/book_a_space'
+    click_on 'Requests'
+
+    expect(page).to have_current_path('/requests')
+  end
+
+  scenario 'sign out button should redirect to home page' do
+    visit '/book_a_space'
+    click_on 'Sign out'
+
+    expect(page).to have_current_path('/')
+  end
 end

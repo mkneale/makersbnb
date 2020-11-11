@@ -24,4 +24,25 @@ feature 'add a space' do
     expect(page).to have_content('2020-05-20')
     expect(page).to have_content('2020-05-21')
   end
+
+  scenario 'spaces button should redirect to spaces page' do
+    visit '/add_a_listing'
+    click_on 'Spaces'
+
+    expect(page).to have_current_path('/book_a_space')
+  end
+
+  scenario 'requests button should redirect to requests page' do
+    visit '/add_a_listing'
+    click_on 'Requests'
+
+    expect(page).to have_current_path('/requests')
+  end
+
+  scenario 'sign out button should redirect to home page' do
+    visit '/add_a_listing'
+    click_on 'Sign out'
+
+    expect(page).to have_current_path('/')
+  end
 end

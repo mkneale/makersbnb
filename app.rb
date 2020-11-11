@@ -8,16 +8,11 @@ require 'uri'
 require 'sinatra'
 require 'sinatra/flash'
 
-
 # This is my new class
 class Makersbnb < Sinatra::Base
   enable :sessions
   set :session_secret, 'why am I needed'
   register Sinatra::Flash
-
-  get '/' do
-    'Temporary test'
-  end
 
   get '/add_a_listing' do
     erb :'add_a_listing/index'
@@ -39,39 +34,42 @@ class Makersbnb < Sinatra::Base
     erb :'book_a_space/index'
   end
 
-  get '/users/new' do
-    erb :"users/new"
+  get '/' do
+    erb :index
   end
 
   post '/users' do
     if params['password'] == params['password_confirmation']
       customer = Customer.create(email:params[:email], password: params[:password])
       session[:customer_id] = customer.customer_id
-      redirect '/'
+      redirect '/book_a_space'
     else
       flash[:notice] = "Passwords don't match"
-      redirect '/users/new'
+      redirect '/'
     end
   end
 
+  get '/login' do
+    erb :'login/index'
+  end
+
+  post '/login' do
+    # do something in the db
+    redirect '/book_a_space'
+  end
+
   post '/book_a_space' do
-    #start_date end_date
     redirect "/book_a_space?start_date=#{params[:start_date]}&end_date=#{params[:end_date]}"
   end
 
-  # get '/users/new' do
-  #   erb :"users/new"
-  # end
-  #
-  # post '/users' do
-  #   redirect '/'
-  # end
-  #
-  # post 'users' do
-  #   User.create(email:params[:email], password: params[:password])
-  #   redirect '/'
-  #
-  # end
+  get '/requests' do
+    erb :'requests/index'
+  end
+
+  post '/sign_out' do
+    # do something in the db
+    redirect '/'
+  end
 
   run! if app_file == $PROGRAM_NAME
 end
