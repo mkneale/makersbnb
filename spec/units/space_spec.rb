@@ -12,10 +12,17 @@ RSpec.describe Space do
   end
   describe '#all' do
     it 'lists all spaces' do
-      space1 = Space.add(name: "Hairy Hotel", description: "Super Hairy", ppn: 59, start_date: '2020-10-15', end_date: '2020-10-15')
-      space2 = Space.add(name: "Hairier Hotel", description: "Woah, This is crazy hairy", ppn: 60, start_date: '2020-11-16', end_date: '2020-11-17')
+      populate_test_table
       expect(Space.all.first.name).to eq "Hairy Hotel"
     end
+
+    it 'only lists spaces within specified dates' do
+      populate_test_table
+      names = Space.all('2020-11-13', '2020-11-14').map{ |space| space.name}
+      expect(names).to include 'Hairy Hotel'
+      expect(names).not_to include 'Hairier Hotel'
+    end
+
   end
   # describe '#all' do
   #   it 'lists all spaces alternative' do
