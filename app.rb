@@ -79,6 +79,7 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/requests' do
+    @requests = Booking.all(customer_id: session[:customer].customer_id, confirmation: false)
     erb :'requests/index'
   end
 

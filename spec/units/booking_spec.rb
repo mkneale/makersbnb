@@ -22,6 +22,29 @@ RSpec.describe Booking do
       )
       persisted_data = persisted_data_booking(id: booking.id)
       expect(persisted_data['booking_id']).to eq booking.id
+      expect(persisted_data['confirmation']).to eq 'f'
     end
   end
+
+  describe '#all' do
+    before(:each) do
+      @customer1 = Customer.create(email: 'test@example.com', password: 'test123')
+      @space1 = Space.add(
+        name: "Hairy Hotel",
+        description: "Wow. Hair everywhere",
+        ppn: 60, start_date: '2020-10-15',
+        end_date: '2020-10-16'
+      )
+    end
+    it 'returns all of the customers unconfirmed booking requests' do
+      booking = Booking.add(
+        customer_id: @customer1.customer_id,
+        space_id: @space1.id,
+        booking_date: '2020-11-25'
+      )
+      bookings = Booking.all(customer_id: booking.customer_id, confirmation: false)
+      expect(bookings.first.customer_id).to eq booking.customer_id
+  end
+  end
+
 end
