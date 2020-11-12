@@ -1,4 +1,4 @@
-<form action='/book_a_space'>
+<form action='/spaces'>
   <input type='submit' value='Spaces'>
 </form>
 <form action='/requests'>
@@ -9,10 +9,10 @@
 </form>
 
 <h1> Book a space </h1>
-<form action='/add_a_listing'>
+<form action='/spaces/new'>
   <input type='submit' value='List a space'>
 </form>
-<form action='/book_a_space' method='post'>
+<form action='/spaces' method='post'>
   <input type='date' name='start_date'>
   <input type='date' name='end_date'>
   <input type='submit' value='List Spaces'>
@@ -20,7 +20,7 @@
 <ol>
   <% @spaces.each do |space| %>
     <li>
-      <a href='/book_a_space/<%= space.id %>'>Name: <%= space.name %></a>
+      <a href='/spaces/<%= space.id %>'>Name: <%= space.name %></a>
     </li>
     <ul>
       <li>Description: <%= space.description %></li>

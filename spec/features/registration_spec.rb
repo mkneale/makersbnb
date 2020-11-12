@@ -6,7 +6,7 @@ feature 'registration' do
     fill_in('password_confirmation', with: 'password123')
     click_button('Sign up')
 
-    expect(page).to have_current_path('/book_a_space')
+    expect(page).to have_current_path('/spaces')
   end
 
   scenario 'a user can sign up with wrong passwords' do

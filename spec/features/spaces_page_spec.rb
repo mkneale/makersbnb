@@ -1,12 +1,12 @@
-feature 'book a space page' do
+feature 'spaces page' do
   scenario 'button to go to list a space' do
-    visit '/book_a_space'
+    visit '/spaces'
     click_on('List a space')
-    expect(page).to have_current_path('/add_a_listing')
+    expect(page).to have_current_path('/spaces/new')
   end
   scenario 'list spaces within a range of dates' do
     populate_test_table
-    visit '/book_a_space'
+    visit '/spaces'
     fill_in 'start_date', with: '2020-11-15'
     fill_in 'end_date', with: '2020-11-18'
     click_on('List Spaces')
@@ -15,21 +15,21 @@ feature 'book a space page' do
   end
 
   scenario 'spaces button should redirect to spaces page' do
-    visit '/book_a_space'
+    visit '/spaces'
     click_on 'Spaces'
 
-    expect(page).to have_current_path('/book_a_space')
+    expect(page).to have_current_path('/spaces')
   end
 
   scenario 'requests button should redirect to requests page' do
-    visit '/book_a_space'
+    visit '/spaces'
     click_on 'Requests'
 
     expect(page).to have_current_path('/requests')
   end
 
   scenario 'sign out button should redirect to home page' do
-    visit '/book_a_space'
+    visit '/spaces'
     click_on 'Sign out'
 
     expect(page).to have_current_path('/')
@@ -41,8 +41,8 @@ feature 'book a space page' do
       ppn: 234,
       start_date: '2020-11-12',
       end_date: '2020-11-28')
-    visit '/book_a_space'
+    visit '/spaces'
     click_on('Hairy Hotel')
-    expect(page).to have_current_path("/book_a_space/#{space.id}")
+    expect(page).to have_current_path("/spaces/#{space.id}")
   end
 end

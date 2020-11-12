@@ -18,11 +18,11 @@ class Makersbnb < Sinatra::Base
     erb :index
   end
 
-  get '/add_a_listing' do
+  get '/spaces/new' do
     erb :'add_a_listing/index'
   end
 
-  post '/add_a_listing' do
+  post '/spaces/new' do
     @space = Space.add(
       name: params[:name],
       description: params[:description],
@@ -30,19 +30,19 @@ class Makersbnb < Sinatra::Base
       start_date: params[:start_date],
       end_date: params[:end_date]
     )
-    redirect "/book_a_space"
+    redirect "/spaces"
   end
 
-  get '/book_a_space' do
+  get '/spaces' do
     @spaces = Space.all(params[:start_date], params[:end_date])
     erb :'book_a_space/index'
   end
 
-  post '/book_a_space' do
-    redirect "/book_a_space?start_date=#{params[:start_date]}&end_date=#{params[:end_date]}"
+  post '/spaces' do
+    redirect "/spaces?start_date=#{params[:start_date]}&end_date=#{params[:end_date]}"
   end
 
-  get '/book_a_space/:id' do
+  get '/spaces/:id' do
     @space = Space.find(id: params[:id])
     erb :'spaces/id'
   end
@@ -51,7 +51,7 @@ class Makersbnb < Sinatra::Base
     if params['password'] == params['password_confirmation']
       customer = Customer.create(email:params[:email], password: params[:password])
       session[:customer_id] = customer.customer_id
-      redirect '/book_a_space'
+      redirect '/spaces'
     else
       flash[:notice] = "Passwords don't match"
       redirect '/'
@@ -64,7 +64,7 @@ class Makersbnb < Sinatra::Base
 
   post '/login' do
     # do something in the db
-    redirect '/book_a_space'
+    redirect '/spaces'
   end
 
   get '/requests' do
