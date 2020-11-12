@@ -51,9 +51,24 @@ attr_reader :id, :name, :description, :ppn, :start_date, :end_date
       ")
     else
       result = DBConnection.query("
-        SELECT * FROM space WHERE start_date <= '#{start_date}'::date OR end_date >= '#{end_date}'::date
+        SELECT * FROM space WHERE '#{start_date}'::date BETWEEN start_date AND end_date
+        OR '#{end_date}'::date BETWEEN start_date AND end_date
       ")
     end
     result.map { |space| Space.new(id: space['space_id'], name: space['name'], description: space['description'], ppn: space['ppn'], start_date: space['start_date'], end_date: space['end_date']) }
   end
+
+  # def self.all(start_date=nil, end_date=nil)
+  #   if start_date == nil && end_date == nil
+  #     result = DBConnection.query("
+  #       SELECT * FROM space
+  #     ")
+  #   else
+  #     result = DBConnection.query("
+  #       SELECT * FROM space WHERE start_date BETWEEN '#{start_date}'::date AND '#{end_date}'::date
+  #       OR end_date BETWEEN '#{start_date}'::date AND '#{end_date}'::date
+  #     ")
+  #   end
+  #   result.map { |space| Space.new(id: space['space_id'], name: space['name'], description: space['description'], ppn: space['ppn'], start_date: space['start_date'], end_date: space['end_date']) }
+  # end
 end
