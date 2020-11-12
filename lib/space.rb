@@ -19,7 +19,29 @@ attr_reader :id, :name, :description, :ppn, :start_date, :end_date
       VALUES ('#{name}', '#{description}', '#{ppn}', '#{start_date}', '#{end_date}')
       RETURNING space_id, name, description, ppn, start_date, end_date
     ")
-    Space.new(id: result[0]['space_id'], name: result[0]['name'], description: result[0]['description'], ppn: result[0]['ppn'], start_date: result[0]['start_date'], end_date: result[0]['end_date'])
+    Space.new(
+      id: result[0]['space_id'],
+      name: result[0]['name'],
+      description: result[0]['description'],
+      ppn: result[0]['ppn'],
+      start_date: result[0]['start_date'],
+      end_date: result[0]['end_date']
+    )
+  end
+
+  def self.find(id:)
+    result = DBConnection.query("
+      SELECT * FROM space
+      WHERE space_id = #{id}
+    ")
+    Space.new(
+      id: result[0]['space_id'],
+      name: result[0]['name'],
+      description: result[0]['description'],
+      ppn: result[0]['ppn'],
+      start_date: result[0]['start_date'],
+      end_date: result[0]['end_date']
+    )
   end
 
   def self.all(start_date=nil, end_date=nil)

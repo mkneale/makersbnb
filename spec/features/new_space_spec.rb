@@ -3,7 +3,7 @@ require_relative '../../app'
 
 feature 'add a space' do
   # scenario 'give a space a name' do
-  #   visit '/add_a_listing'
+  #   visit '/spaces/new'
   #   expect(page).to have_content('List a space')
   #   fill_in 'name', with: "Hairy Hotel"
   #   click_on('Submit')
@@ -11,7 +11,7 @@ feature 'add a space' do
   #   expect(page).to have_content('Hairy Hotel')
   # end
   scenario 'give a space a description' do
-    visit '/add_a_listing'
+    visit '/spaces/new'
     fill_in 'name', with: "Hairiest Hotel"
     fill_in 'description', with: "This is a well cool place"
     fill_in 'ppn', with: 50
@@ -26,21 +26,21 @@ feature 'add a space' do
   end
 
   scenario 'spaces button should redirect to spaces page' do
-    visit '/add_a_listing'
+    visit '/spaces/new'
     click_on 'Spaces'
 
-    expect(page).to have_current_path('/book_a_space')
+    expect(page).to have_current_path('/spaces')
   end
 
   scenario 'requests button should redirect to requests page' do
-    visit '/add_a_listing'
+    visit '/spaces/new'
     click_on 'Requests'
 
     expect(page).to have_current_path('/requests')
   end
 
   scenario 'sign out button should redirect to home page' do
-    visit '/add_a_listing'
+    visit '/spaces/new'
     click_on 'Sign out'
 
     expect(page).to have_current_path('/')

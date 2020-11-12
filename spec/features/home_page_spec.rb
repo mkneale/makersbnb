@@ -11,7 +11,7 @@ feature 'home page' do
     fill_in 'email', with: 'test@example.com'
     fill_in 'password', with: 'password123'
     click_on('Login')
-    expect(page).to have_current_path('/book_a_space')
+    expect(page).to have_current_path('/spaces')
   end
   scenario 'click login' do
     visit '/'

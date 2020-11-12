@@ -24,6 +24,16 @@ RSpec.describe Space do
     end
 
   end
+  describe '#find' do
+    it 'returns a single space object based on an id' do
+      space = Space.add(name: 'Hairy Hotel',
+        description: 'Super hairy bro',
+        ppn: 234,
+        start_date: '2020-11-12',
+        end_date: '2020-11-28')
+      expect(Space.find(id: space.id).name).to eq 'Hairy Hotel'
+    end
+  end
   # describe '#all' do
   #   it 'lists all spaces alternative' do
   #     space1 = Space.add(name: "Hairy Hotel")

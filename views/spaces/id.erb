@@ -1,0 +1,21 @@
+<head>
+  <link rel=”stylesheet” type=”text/css” href=”/style.css” />
+</head>
+
+<form action='/spaces'>
+  <input type='submit' value='Spaces'>
+</form>
+<form action='/requests'>
+  <input type='submit' value='Requests'>
+</form>
+<form action='/sign_out' method='post'>
+  <input type='submit' value='Sign out'>
+</form>
+<center>
+  <div style='height: 100%;width: 50%;background-color: powderblue;'>
+    <h1><%= @space.name %></h1>
+    <h3><%= @space.description %></h3>
+    <p style='text-align:left;padding-left:20px'>Pick a date:</p>
+    <img src='/images/calendar.png'>
+  <div>
+</center>
