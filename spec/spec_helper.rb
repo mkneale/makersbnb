@@ -41,7 +41,7 @@ RSpec.configure do |config|
   # assertions if you prefer.
   config.before(:each) do
     truncate_table('space')
-
+    truncate_table('customer')
   end
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
