@@ -3,7 +3,12 @@ require 'space'
 RSpec.describe Space do
   describe '#add' do
     it 'adds a space to the listings' do
-      space = Space.add(name: "Hairy Hotel", description: "Wow. Hair everywhere", ppn: 60, start_date: '2020-10-15', end_date: '2020-10-16')
+      space = Space.add(
+        name: "Hairy Hotel",
+        description: "Wow. Hair everywhere",
+        ppn: 60, start_date: '2020-10-15',
+        end_date: '2020-10-16'
+      )
 
       p_data = persisted_data(id: space.id)
 

@@ -1,7 +1,12 @@
 require_relative '../helpers/db_helpers'
 require_relative '../../app'
 
+
+
 feature 'add a space' do
+  before(:each) do
+    sign_up_and_sign_in
+  end
   # scenario 'give a space a name' do
   #   visit '/spaces/new'
   #   expect(page).to have_content('List a space')

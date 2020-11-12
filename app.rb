@@ -15,6 +15,7 @@ class Makersbnb < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
+    @customer = session[:customer]
     erb :index
   end
 
@@ -49,7 +50,11 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/spaces/:id/request' do
-    # add request to database
+    Booking.add(
+      customer_id: session[:customer].customer_id,
+      space_id: params[:id],
+      booking_date: params[:booking_date]
+    )
     redirect '/requests'
   end
 

@@ -1,4 +1,7 @@
 feature 'spaces page' do
+  before(:each) do
+    sign_up_and_sign_in
+  end
   scenario 'button to go to list a space' do
     visit '/spaces'
     click_on('List a space')
@@ -45,7 +48,8 @@ feature 'spaces page' do
     click_on('Hairy Hotel')
     expect(page).to have_current_path("/spaces/#{space.id}")
   end
-
+end
+feature 'show sign in information' do
   scenario 'sign_out button signs the user out' do
     @email = 'test@example.com'
     visit '/'

@@ -1,15 +1,22 @@
-<h1>Already signed up?</h1>
-<form action='/login'>
-  <input type='submit' value='Login'>
-</form>
-<h1> Sign up to MakersBnB: </h1>
-<form action="/users" method="post">
-  <%= flash[:notice] %> <br>
-  <label for="email">Email: </label>
-  <input type="email" name="email" /> <br>
-  <label for="password">Password: </label>
-  <input type="password" name="password" /> <br>
-  <label for="password_confirmation">  Password confirmation </label>
-  <input type="password" name ="password_confirmation" /><br>
-  <input type ="submit" value="Sign up" />
-</form>
+<% if @customer.nil? %>
+  <h1>Already signed up?</h1>
+  <form action='/login'>
+    <input type='submit' value='Login'>
+  </form>
+  <h1> Sign up to MakersBnB: </h1>
+  <form action="/users" method="post">
+    <%= flash[:notice] %> <br>
+    <label for="email">Email: </label>
+    <input type="email" name="email" /> <br>
+    <label for="password">Password: </label>
+    <input type="password" name="password" /> <br>
+    <label for="password_confirmation">  Password confirmation </label>
+    <input type="password" name ="password_confirmation" /><br>
+    <input type ="submit" value="Sign up" />
+  </form>
+<% else %>
+  <h1>Welcome <%= @customer.email %></h1>
+  <form action='/spaces'>
+    <input type='submit' value='GO TO SPACES'>
+  </form>
+<% end %>

@@ -1,10 +1,8 @@
 feature 'home page' do
   before(:each) do
-    visit '/'
-    fill_in('email', with: 'test@example.com')
-    fill_in('password', with: 'password123')
-    fill_in('password_confirmation', with: 'password123')
-    click_on('Sign up')
+    sign_up_and_sign_in
+    visit '/spaces'
+    click_on('Sign out')
   end
   scenario 'log someone in' do
     visit '/login'

@@ -1,10 +1,8 @@
 feature 'login page' do
   before(:each) do
-    visit '/'
-    fill_in('email', with: 'test@example.com')
-    fill_in('password', with: 'password123')
-    fill_in('password_confirmation', with: 'password123')
-    click_button('Sign up')
+    sign_up_and_sign_in
+    visit '/spaces'
+    click_on('Sign out')
   end
   scenario 'log the user in and have the customer_id available in the session' do
     @email = 'test@example.com'
