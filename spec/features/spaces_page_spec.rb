@@ -10,8 +10,8 @@ feature 'spaces page' do
   scenario 'list spaces within a range of dates' do
     populate_test_table
     visit '/spaces'
-    fill_in 'start_date', with: '2020-11-15'
-    fill_in 'end_date', with: '2020-11-18'
+    fill_in 'start_date', with: '2020-11-22'
+    fill_in 'end_date', with: '2020-11-28'
     click_on('List Spaces')
     expect(page).to have_content('Hairy Hotel')
     expect(page).not_to have_content('Hairier Hotel')

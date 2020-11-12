@@ -12,9 +12,26 @@
 Hello welcome to requests. Please look at them.
 
 <h2> Requests I've made </h2>
+<!-- customer booking into a space
+page to be signed into customer
+looking at booking table. listing all bookings where customer_id = session [customer_id] AND confirmation == false
+
+Name of space - join space table on space.id
+confirmation
+dates booked  -->
+
+<ol>
+  <% @requests.each do |request| %>
+    <ul>
+      <li>ID: <%= request.id %></li>
+      <li>Customer ID: £<%= request.customer_id %></li>
+      <li>Space ID: <%= request.space_id %></li>
+      <li>Confirmation: <%= request.confirmation %></li>
+      <li>Booking Date: <%= request.booking_date %></li>
+    </ul>
+  <% end %>
+</ol>
 
 
 
-
-
-<h3> Requests I've received </h3>
+<h2> Requests I've received </h2>

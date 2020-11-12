@@ -23,7 +23,7 @@ RSpec.describe Space do
 
     it 'only lists spaces within specified dates' do
       populate_test_table
-      names = Space.all('2020-11-13', '2020-11-14').map{ |space| space.name}
+      names = Space.all('2020-11-09', '2020-11-14').map{ |space| space.name}
       expect(names).to include 'Hairy Hotel'
       expect(names).not_to include 'Hairier Hotel'
     end
