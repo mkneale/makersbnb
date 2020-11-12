@@ -1,5 +1,8 @@
+require_relative '../helpers/sign_in'
+
 feature 'space pages' do
   before(:each) do
+    sign_up_and_sign_in
     @space = Space.add(name: 'Hairy Hotel',
       description: 'Super hairy bro',
       ppn: 234,
@@ -34,11 +37,10 @@ feature 'space pages' do
     expect(page).to have_current_path('/')
   end
 
-
-  scenario 'clicking request to book button redirect to request page'do
+  scenario 'clicking request to book button redirect to request page' do
     visit "/spaces/#{@space.id}"
+    fill_in 'booking_date', with: '2020-11-25'
     click_on 'Request to book'
-
     expect(page).to have_current_path('/requests')
+  end
 end
-end 
