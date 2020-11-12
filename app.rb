@@ -14,6 +14,10 @@ class Makersbnb < Sinatra::Base
   set :session_secret, 'why am I needed'
   register Sinatra::Flash
 
+  get '/' do
+    erb :index
+  end
+
   get '/add_a_listing' do
     erb :'add_a_listing/index'
   end
@@ -36,10 +40,6 @@ class Makersbnb < Sinatra::Base
 
   post '/book_a_space' do
     redirect "/book_a_space?start_date=#{params[:start_date]}&end_date=#{params[:end_date]}"
-  end
-
-  get '/' do
-    erb :index
   end
 
   post '/users' do

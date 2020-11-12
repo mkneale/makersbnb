@@ -17,14 +17,16 @@
   <input type='date' name='end_date'>
   <input type='submit' value='List Spaces'>
 </form>
-<ul>
+<ol>
   <% @spaces.each do |space| %>
     <li>
-      Name: <%= space.name %>
-      Description: <%= space.description %>
-      Price per night: £<%= space.ppn %>
-      Available from: <%= space.start_date %>
-      Available to: <%= space.end_date %>
+      <a href='/book_a_space/<%= space.id %>'>Name: <%= space.name %></a>
     </li>
+    <ul>
+      <li>Description: <%= space.description %></li>
+      <li>Price per night: £<%= space.ppn %></li>
+      <li>Available from: <%= space.start_date %></li>
+      <li>Available to: <%= space.end_date %></li>
+    </ul>
   <% end %>
-</ul>
+</ol>
