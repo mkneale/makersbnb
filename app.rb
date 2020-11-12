@@ -42,6 +42,11 @@ class Makersbnb < Sinatra::Base
     redirect "/book_a_space?start_date=#{params[:start_date]}&end_date=#{params[:end_date]}"
   end
 
+  get '/book_a_space/:id' do
+    @space = Space.find(id: params[:id])
+    erb :'spaces/id'
+  end
+
   post '/users' do
     if params['password'] == params['password_confirmation']
       customer = Customer.create(email:params[:email], password: params[:password])
