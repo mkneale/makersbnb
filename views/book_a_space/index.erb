@@ -8,6 +8,10 @@
   <input type='submit' value='Sign out'>
 </form>
 
+<% if !@customer.nil? %>
+  <h2>You are logged in as <%= @customer.email %></h2>
+<% end %>
+
 <h1> Book a space </h1>
 <form action='/spaces/new'>
   <input type='submit' value='List a space'>

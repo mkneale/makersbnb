@@ -45,4 +45,22 @@ feature 'spaces page' do
     click_on('Hairy Hotel')
     expect(page).to have_current_path("/spaces/#{space.id}")
   end
+
+  scenario 'sign_out button signs the user out' do
+    @email = 'test@example.com'
+    visit '/'
+    fill_in('email', with: @email)
+    fill_in('password', with: 'password123')
+    fill_in('password_confirmation', with: 'password123')
+    click_button('Sign up')
+    visit '/login'
+    fill_in 'email', with: @email
+    fill_in 'password', with: 'password123'
+    click_on('Login')
+    expect(page).to have_current_path('/spaces')
+    expect(page).to have_content("You are logged in as #{@email}")
+    click_on('Sign out')
+    visit('/spaces')
+    expect(page).not_to have_content("You are logged in as #{@email}")
+  end
 end

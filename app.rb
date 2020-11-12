@@ -35,6 +35,7 @@ class Makersbnb < Sinatra::Base
 
   get '/spaces' do
     @spaces = Space.all(params[:start_date], params[:end_date])
+    @customer = session[:customer]
     erb :'book_a_space/index'
   end
 
@@ -50,7 +51,7 @@ class Makersbnb < Sinatra::Base
   post '/users' do
     if params['password'] == params['password_confirmation']
       customer = Customer.create(email:params[:email], password: params[:password])
-      session[:customer_id] = customer.customer_id
+      session[:customer] = customer # fake login
       redirect '/spaces'
     else
       flash[:notice] = "Passwords don't match"
@@ -63,7 +64,7 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/login' do
-    # do something in the db
+    session[:customer] = Customer.find(email: params[:email])# do something in the db
     redirect '/spaces'
   end
 
@@ -72,7 +73,7 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/sign_out' do
-    # do something in the db
+    session[:customer] = nil# do something in the db
     redirect '/'
   end
 
