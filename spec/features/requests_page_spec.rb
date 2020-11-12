@@ -42,10 +42,9 @@ feature 'display my requests' do
     visit "/spaces/#{@space.id}"
     fill_in 'booking_date', with: '2020-11-14'
     click_on "Request to book"
-
-    expect(page).to have_content "#{@space.id}"
-    # expect(page).to have_content 'Hairy Hotel'
-    # expect(page).to have_content 'f' # should be unconfirmed
-    # expect(page).to have_content '2020-11-14'
+    expect(page).to have_current_path('/requests')
+    expect(page).to have_content("#{@space.name}")
+    expect(page).to have_content('Unconfirmed') # should be unconfirmed
+    expect(page).to have_content('2020-11-14')
   end
 end
