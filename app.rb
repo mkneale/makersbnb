@@ -48,6 +48,11 @@ class Makersbnb < Sinatra::Base
     erb :'spaces/id'
   end
 
+  post '/spaces/:id/request' do
+    # add request to database
+    redirect '/requests'
+  end
+
   post '/users' do
     if params['password'] == params['password_confirmation']
       customer = Customer.create(email:params[:email], password: params[:password])

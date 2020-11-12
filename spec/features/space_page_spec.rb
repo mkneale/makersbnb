@@ -34,11 +34,10 @@ feature 'space pages' do
     expect(page).to have_current_path('/')
   end
 
-
   scenario 'clicking request to book button redirect to request page'do
     visit "/spaces/#{@space.id}"
+    fill_in 'date', with: '2020-11-25'
     click_on 'Request to book'
-
     expect(page).to have_current_path('/requests')
+  end
 end
-end 
