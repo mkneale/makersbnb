@@ -51,7 +51,7 @@ attr_reader :id, :name, :description, :ppn, :start_date, :end_date
       ")
     else
       result = DBConnection.query("
-        SELECT * FROM space WHERE start_date <= '#{start_date}'::date AND end_date >= '#{end_date}'::date
+        SELECT * FROM space WHERE start_date <= '#{start_date}'::date OR end_date >= '#{end_date}'::date
       ")
     end
     result.map { |space| Space.new(id: space['space_id'], name: space['name'], description: space['description'], ppn: space['ppn'], start_date: space['start_date'], end_date: space['end_date']) }
