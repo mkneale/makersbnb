@@ -34,6 +34,10 @@ class Makersbnb < Sinatra::Base
     erb :'book_a_space/index'
   end
 
+  post '/book_a_space' do
+    redirect "/book_a_space?start_date=#{params[:start_date]}&end_date=#{params[:end_date]}"
+  end
+
   get '/' do
     erb :index
   end
@@ -56,10 +60,6 @@ class Makersbnb < Sinatra::Base
   post '/login' do
     # do something in the db
     redirect '/book_a_space'
-  end
-
-  post '/book_a_space' do
-    redirect "/book_a_space?start_date=#{params[:start_date]}&end_date=#{params[:end_date]}"
   end
 
   get '/requests' do

@@ -34,4 +34,15 @@ feature 'book a space page' do
 
     expect(page).to have_current_path('/')
   end
+
+  scenario 'clicking on a space should take you to that spaces page' do
+    space = Space.add(name: 'Hairy Hotel',
+      description: 'Super hairy bro',
+      ppn: 234,
+      start_date: '2020-11-12',
+      end_date: '2020-11-28')
+    visit '/book_a_space'
+    click_on('Hairy Hotel')
+    expect(page).to have_current_path("/book_a_space/#{space.id}")
+  end
 end
