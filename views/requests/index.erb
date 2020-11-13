@@ -27,9 +27,8 @@ confirmation
 dates booked  -->
 
 <ol>
-  <% @requests.each do |request| %>
+  <% @my_requests.each do |request| %>
     <ul>
-      <li>ID: <%= request.id %></li>
       <li>Space name: <%= Space.find(id: request.space_id).name %></li>
       <li>Confirmation: <%= request.confirmation == 'f' ? 'Unconfirmed' : 'Confirmed' %></li>
       <li>Booking Date: <%= Booking.find(id: request.id).booking_date %></li>
@@ -38,5 +37,14 @@ dates booked  -->
 </ol>
 
 
-
 <h2> Requests I've received </h2>
+
+<ol>
+  <% @received_requests.each do |request| %>
+    <ul>
+      <li>Space name: <a href='/requests/<%=request.id%>'><%= Space.find(id: request.space_id).name %></a></li>
+      <li>Confirmation: <%= request.confirmation == 'f' ? 'Unconfirmed' : 'Confirmed' %></li>
+      <li>Booking Date: <%= Booking.find(id: request.id).booking_date %></li>
+    </ul>
+  <% end %>
+</ol>
