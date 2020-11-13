@@ -85,6 +85,7 @@ class Makersbnb < Sinatra::Base
     @customer = session[:customer]
     redirect('/login') if @customer.nil?
     @requests = Booking.all(customer_id: session[:customer].customer_id, confirmation: false)
+#    @my_requests = Booking.all(host_id: [host_id])
     erb :'requests/index'
   end
 

@@ -42,7 +42,7 @@ feature 'display my requests' do
       description: 'Super hairy bro',
       ppn: 234,
       start_date: '2020-11-12',
-      end_date: '2020-11-28', 
+      end_date: '2020-11-28',
       customer_id: @customer.customer_id
     )
   end
@@ -70,6 +70,9 @@ feature 'display my requests' do
     click_on "Login"
     visit '/requests'
 
-    expect(page).to have_content
+    expect(page).to have_content("#{@space.name}")
+    expect(page).to have_content("Not confirmed")
+    expect(page).to have_content("2020-11-20")
+
   end
 end

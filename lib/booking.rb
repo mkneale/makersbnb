@@ -25,7 +25,7 @@ class Booking
     )
   end
 
-  def self.all(customer_id:, confirmation:)
+  def self.all(customer_id: nil, host_id: nil, confirmation:) # add in host_id
     result = DBConnection.query("
       SELECT * FROM booking
       WHERE customer_id = '#{customer_id}' AND confirmation = '#{confirmation}'
