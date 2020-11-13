@@ -17,26 +17,26 @@
 <% if !@customer.nil? %>
   <h2>You are logged in as <%= @customer.email %></h2>
 <% end %>
-
-<h1> Book a space </h1>
-<form action='/spaces/new'>
-  <input type='submit' value='List a space'>
-</form>
-<form action='/spaces' method='post'>
-  <input type='date' name='start_date'>
-  <input type='date' name='end_date'>
-  <input type='submit' value='List Spaces'>
-</form>
-<ol>
-  <% @spaces.each do |space| %>
-    <li>
-      <a href='/spaces/<%= space.id %>'>Name: <%= space.name %></a>
-    </li>
-    <ul>
-      <li>Description: <%= space.description %></li>
-      <li>Price per night: £<%= space.ppn %></li>
-      <li>Available from: <%= space.start_date %></li>
-      <li>Available to: <%= space.end_date %></li>
-    </ul>
-  <% end %>
-</ol>
+  <h1> Book a space </h1>
+  <form action='/spaces/new'>
+    <input type='submit' value='List a space'>
+  </form>
+  <form action='/spaces' method='post'>
+    <input type='date' name='start_date'>
+    <input type='date' name='end_date'>
+    <input type='submit' value='List Spaces'>
+  </form>
+  <ol>
+    <% @spaces.each do |space| %>
+      <li>
+        <a href='/spaces/<%= space.id %>'>Name: <%= space.name %></a>
+      </li>
+      <ul>
+        <li>Description: <%= space.description %></li>
+        <li>Price per night: £<%= space.ppn %></li>
+        <li>Available from: <%= space.start_date %></li>
+        <li>Available to: <%= space.end_date %></li>
+      </ul>
+      <br>
+    <% end %>
+  </ol>

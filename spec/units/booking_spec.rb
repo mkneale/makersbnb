@@ -11,7 +11,7 @@ RSpec.describe Booking do
         name: "Hairy Hotel",
         description: "Wow. Hair everywhere",
         ppn: 60, start_date: '2020-10-15',
-        end_date: '2020-10-16', 
+        end_date: '2020-10-16',
         customer_id: @customer1.customer_id
       )
     end
@@ -68,6 +68,28 @@ RSpec.describe Booking do
       found_booking = Booking.find(id: @booking.id)
       # p found_booking.booking_date
       expect(found_booking.booking_date).to eq @booking.booking_date
+    end
+  end
+  describe '#confirm' do
+    before(:each) do
+      @customer1 = Customer.create(email: 'test@example.com', password: 'test123')
+      @space1 = Space.add(
+        name: "Hairy Hotel",
+        description: "Wow. Hair everywhere",
+        ppn: 60, start_date: '2020-10-15',
+        end_date: '2020-10-16',
+        customer_id: @customer1.customer_id
+      )
+      @booking = Booking.add(
+        customer_id: @customer1.customer_id,
+        space_id: @space1.id,
+        booking_date: '2020-11-25'
+      )
+    end
+    it 'changes the value of confirmation to accept' do
+      Booking.confirm(id: @booking.id)
+      persisted_data = persisted_data_booking(id: @booking.id)
+      expect(persisted_data['confirmation']).to eq 't'
     end
   end
 end
