@@ -1,4 +1,13 @@
-<h1>Request for <%= Space.find(id: @booking.space_id).name %></h1>
-<p><%= @booking.confirmation == 'f' ? 'Unconfirmed' : 'Confirmed' %></p>
-<p><%= @booking.booking_date %></p>
-<p>From: <%= Customer.find(customer_id: @booking.customer_id).email %></p>
+<center>
+  <h1>Request for <%= Space.find(id: @booking.space_id).name %></h1>
+  <p><%= @booking.confirmation == 'f' ? 'Unconfirmed' : 'Confirmed' %></p>
+  <p><%= @booking.booking_date %></p>
+  <p>From: <%= Customer.find(customer_id: @booking.customer_id).email %></p>
+
+  <form action="/request?id=<%= @booking.id %>;decision=<%= 'accept' %>" method='post'>
+    <input type='submit' value='Accept request'>
+  </form>
+  <form action='/request?id=<%= @booking.id %>;decision=<%= 'deny' %>' method='post'>
+    <input type='submit' value='Deny request'>
+  </form>
+</center>

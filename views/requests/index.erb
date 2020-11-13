@@ -14,37 +14,40 @@
   </form>
 <% end %>
 
-<h1> Requests </h1>
-Hello welcome to requests. Please look at them.
+<center>
 
-<h2> Requests I've made </h2>
-<!-- customer booking into a space
-page to be signed into customer
-looking at booking table. listing all bookings where customer_id = session [customer_id] AND confirmation == false
+  <h1> Requests </h1>
+  Hello welcome to requests. Please look at them.
 
-Name of space - join space table on space.id
-confirmation
-dates booked  -->
+  <h2> Requests I've made </h2>
+  <!-- customer booking into a space
+  page to be signed into customer
+  looking at booking table. listing all bookings where customer_id = session [customer_id] AND confirmation == false
 
-<ol>
-  <% @my_requests.each do |request| %>
-    <ul>
-      <li>Space name: <%= Space.find(id: request.space_id).name %></li>
-      <li>Confirmation: <%= request.confirmation == 'f' ? 'Unconfirmed' : 'Confirmed' %></li>
-      <li>Booking Date: <%= Booking.find(id: request.id).booking_date %></li>
-    </ul>
-  <% end %>
-</ol>
+  Name of space - join space table on space.id
+  confirmation
+  dates booked  -->
+
+  <ol>
+    <% @my_requests.each do |request| %>
+      <ul>
+        <li>Space name: <a href='/spaces/<%=request.space_id%>'><%= Space.find(id: request.space_id).name %></a></li>
+        <li>Confirmation: <%= request.confirmation == 'f' ? 'Unconfirmed' : 'Confirmed' %></li>
+        <li>Booking Date: <%= Booking.find(id: request.id).booking_date %></li>
+      </ul>
+    <% end %>
+  </ol>
 
 
-<h2> Requests I've received </h2>
+  <h2> Requests I've received </h2>
 
-<ol>
-  <% @received_requests.each do |request| %>
-    <ul>
-      <li>Space name: <a href='/requests/<%=request.id%>'><%= Space.find(id: request.space_id).name %></a></li>
-      <li>Confirmation: <%= request.confirmation == 'f' ? 'Unconfirmed' : 'Confirmed' %></li>
-      <li>Booking Date: <%= Booking.find(id: request.id).booking_date %></li>
-    </ul>
-  <% end %>
-</ol>
+  <ol>
+    <% @received_requests.each do |request| %>
+      <ul>
+        <li>Space name: <a href='/requests/<%=request.id%>'><%= Space.find(id: request.space_id).name %></a></li>
+        <li>Confirmation: <%= request.confirmation == 'f' ? 'Unconfirmed' : 'Confirmed' %></li>
+        <li>Booking Date: <%= Booking.find(id: request.id).booking_date %></li>
+      </ul>
+    <% end %>
+  </ol>
+</center>

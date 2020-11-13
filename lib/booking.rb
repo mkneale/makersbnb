@@ -59,4 +59,20 @@ class Booking
     )
   end
 
+  def self.confirm(id:)
+    result = DBConnection.query("
+      UPDATE booking
+      SET confirmation = true
+      WHERE booking_id = #{id}
+      RETURNING booking_id, customer_id, space_id, booking_date, confirmation
+    ")
+    Booking.new(
+      id: result[0]['booking_id'],
+      customer_id: result[0]['customer_id'],
+      space_id: result[0]['space_id'],
+      booking_date: result[0]['booking_date'],
+      confirmation: result[0]['confirmation']
+    )
+  end
+
 end

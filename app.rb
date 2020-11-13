@@ -94,6 +94,16 @@ class Makersbnb < Sinatra::Base
     erb :'requests/id/index'
   end
 
+  post '/request' do
+    if params[:decision] == 'accept'
+      Booking.confirm(id: params[:id])
+      redirect('/requests')
+    else
+      redirect('https://smartcdn.prod.postmedia.digital/nationalpost/wp-content/uploads/2019/06/flip-2.png?quality=100&strip=all&w=605')
+    end
+
+  end
+
   post '/sign_out' do
     session[:customer] = nil# do something in the db
     redirect '/'
