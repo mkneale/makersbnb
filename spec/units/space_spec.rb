@@ -1,13 +1,17 @@
 require 'space'
 
 RSpec.describe Space do
+  before(:each) do
+    @customer1 = Customer.create(email: 'test@example.com', password: 'test123')
+  end
   describe '#add' do
     it 'adds a space to the listings' do
       space = Space.add(
         name: "Hairy Hotel",
         description: "Wow. Hair everywhere",
         ppn: 60, start_date: '2020-10-15',
-        end_date: '2020-10-16'
+        end_date: '2020-10-16', 
+        customer_id: @customer1.customer_id
       )
 
       p_data = persisted_data(id: space.id)
@@ -35,7 +39,9 @@ RSpec.describe Space do
         description: 'Super hairy bro',
         ppn: 234,
         start_date: '2020-11-12',
-        end_date: '2020-11-28')
+        end_date: '2020-11-28', 
+        customer_id: @customer1.customer_id
+      )
       expect(Space.find(id: space.id).name).to eq 'Hairy Hotel'
     end
   end

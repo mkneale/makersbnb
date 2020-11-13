@@ -1,6 +1,6 @@
 feature 'spaces page' do
   before(:each) do
-    sign_up_and_sign_in
+    @customer = sign_up_and_sign_in
   end
   scenario 'button to go to list a space' do
     visit '/spaces'
@@ -54,7 +54,9 @@ feature 'spaces page' do
       description: 'Super hairy bro',
       ppn: 234,
       start_date: '2020-11-12',
-      end_date: '2020-11-28')
+      end_date: '2020-11-28',
+      customer_id: @customer.customer_id
+    )
     visit '/spaces'
     click_on('Hairy Hotel')
     expect(page).to have_current_path("/spaces/#{space.id}")
