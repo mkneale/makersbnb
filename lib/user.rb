@@ -33,7 +33,9 @@ class Customer
         WHERE customer_id='#{customer_id}';
       ")
     end
-    return Customer.new(customer_id: result[0]['customer_id'], email: result[0]['email']) if !result[0]['customer_id'].nil?
-    'No Customer'
+    Customer.new(
+      customer_id: result[0]['customer_id'],
+      email: result[0]['email']
+    )
   end
 end
