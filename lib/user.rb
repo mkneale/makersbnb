@@ -21,12 +21,19 @@ class Customer
       email: result[0]['email'])
   end
 
-  def self.find(email:)
-    result = DBConnection.query("
-      SELECT * FROM customer
-      WHERE email='#{email}';
-    ")
-    Customer.new(customer_id: result[0]['customer_id'],
-      email: result[0]['email'])
+  def self.find(email: nil, customer_id: nil)
+    if customer_id.nil? && !email.nil?
+      result = DBConnection.query("
+        SELECT * FROM customer
+        WHERE email='#{email}';
+      ")
+    elsif !customer_id.nil? && email.nil?
+      result = DBConnection.query("
+        SELECT * FROM customer
+        WHERE customer_id='#{customer_id}';
+      ")
+    end
+    return Customer.new(customer_id: result[0]['customer_id'], email: result[0]['email']) if !result[0]['customer_id'].nil?
+    'No Customer'
   end
 end
