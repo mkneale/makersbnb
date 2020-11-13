@@ -2,12 +2,13 @@ require_relative '../helpers/sign_in'
 
 feature 'space pages' do
   before(:each) do
-    sign_up_and_sign_in
+    @customer = sign_up_and_sign_in
     @space = Space.add(name: 'Hairy Hotel',
       description: 'Super hairy bro',
       ppn: 234,
       start_date: '2020-11-12',
-      end_date: '2020-11-28'
+      end_date: '2020-11-28', 
+      customer_id: @customer.customer_id
     )
   end
   scenario 'show space information' do

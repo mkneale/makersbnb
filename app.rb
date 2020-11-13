@@ -30,7 +30,8 @@ class Makersbnb < Sinatra::Base
       description: params[:description],
       ppn: params[:ppn],
       start_date: params[:start_date],
-      end_date: params[:end_date]
+      end_date: params[:end_date],
+      customer_id: session[:customer].customer_id
     )
     redirect "/spaces"
   end

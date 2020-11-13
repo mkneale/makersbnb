@@ -11,7 +11,8 @@ RSpec.describe Booking do
         name: "Hairy Hotel",
         description: "Wow. Hair everywhere",
         ppn: 60, start_date: '2020-10-15',
-        end_date: '2020-10-16'
+        end_date: '2020-10-16', 
+        customer_id: @customer1.customer_id
       )
     end
     it 'adds a booking to the database' do
@@ -33,7 +34,8 @@ RSpec.describe Booking do
         name: "Hairy Hotel",
         description: "Wow. Hair everywhere",
         ppn: 60, start_date: '2020-10-15',
-        end_date: '2020-10-16'
+        end_date: '2020-10-16',
+        customer_id: @customer1.customer_id
       )
     end
     it 'returns all of the customers unconfirmed booking requests' do
@@ -53,7 +55,8 @@ RSpec.describe Booking do
         name: "Hairy Hotel",
         description: "Wow. Hair everywhere",
         ppn: 60, start_date: '2020-10-15',
-        end_date: '2020-10-16'
+        end_date: '2020-10-16',
+        customer_id: @customer1.customer_id
       )
       @booking = Booking.add(
         customer_id: @customer1.customer_id,
