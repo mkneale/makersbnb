@@ -16,7 +16,7 @@ class Booking
       VALUES ('#{customer_id}', '#{space_id}', '#{booking_date}', false)
       RETURNING booking_id, customer_id, space_id, booking_date, confirmation
     ")
-    Booking.new(
+    booking = Booking.new(
       id: result[0]['booking_id'],
       customer_id: result[0]['customer_id'],
       space_id: result[0]['space_id'],

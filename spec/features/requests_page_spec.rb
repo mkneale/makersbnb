@@ -26,6 +26,13 @@ feature 'requests page has buttons' do
 
     expect(page).to have_current_path('/')
   end
+
+  scenario 'login button should redirect to login page' do
+    visit "/requests"
+    click_on 'Sign out'
+    visit "/requests"
+    expect(page).to have_current_path('/login')
+  end
 end
 
 feature 'display my requests' do

@@ -38,6 +38,17 @@ feature 'spaces page' do
     expect(page).to have_current_path('/')
   end
 
+  scenario 'login button should redirect to login page' do
+    visit "/spaces"
+    click_on 'Sign out'
+    visit "/spaces"
+    click_on 'Login'
+    expect(page).to have_current_path('/login')
+    sign_up_and_sign_in('anothertest@test.com')
+    visit "/spaces"
+    expect(page).to have_button('Sign out')
+  end
+
   scenario 'clicking on a space should take you to that spaces page' do
     space = Space.add(name: 'Hairy Hotel',
       description: 'Super hairy bro',
