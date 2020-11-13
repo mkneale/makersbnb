@@ -44,7 +44,27 @@ RSpec.describe Booking do
       )
       bookings = Booking.all(customer_id: booking.customer_id, confirmation: false)
       expect(bookings.first.customer_id).to eq booking.customer_id
+    end
   end
+  describe '#find' do
+    before(:each) do
+      @customer1 = Customer.create(email: 'test@example.com', password: 'test123')
+      @space1 = Space.add(
+        name: "Hairy Hotel",
+        description: "Wow. Hair everywhere",
+        ppn: 60, start_date: '2020-10-15',
+        end_date: '2020-10-16'
+      )
+      @booking = Booking.add(
+        customer_id: @customer1.customer_id,
+        space_id: @space1.id,
+        booking_date: '2020-11-25'
+      )
+    end
+    it 'returns a booking object based on a booking id' do
+      found_booking = Booking.find(id: @booking.id)
+      # p found_booking.booking_date
+      expect(found_booking.booking_date).to eq @booking.booking_date
+    end
   end
-
 end

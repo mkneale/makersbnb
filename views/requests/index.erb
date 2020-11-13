@@ -4,9 +4,15 @@
 <form action='/requests'>
   <input type='submit' value='Requests'>
 </form>
-<form action='/sign_out' method='post'>
-  <input type='submit' value='Sign out'>
-</form>
+<% if @customer.nil? %>
+  <form action='/login'>
+    <input type='submit' value='Login'>
+  </form>
+<% else %>
+  <form action='/sign_out' method='post'>
+    <input type='submit' value='Sign out'>
+  </form>
+<% end %>
 
 <h1> Requests </h1>
 Hello welcome to requests. Please look at them.
@@ -24,10 +30,9 @@ dates booked  -->
   <% @requests.each do |request| %>
     <ul>
       <li>ID: <%= request.id %></li>
-      <li>Customer ID: £<%= request.customer_id %></li>
-      <li>Space ID: <%= request.space_id %></li>
-      <li>Confirmation: <%= request.confirmation %></li>
-      <li>Booking Date: <%= request.booking_date %></li>
+      <li>Space name: <%= Space.find(id: request.space_id).name %></li>
+      <li>Confirmation: <%= request.confirmation == 'f' ? 'Unconfirmed' : 'Confirmed' %></li>
+      <li>Booking Date: <%= Booking.find(id: request.id).booking_date %></li>
     </ul>
   <% end %>
 </ol>

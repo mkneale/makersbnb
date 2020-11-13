@@ -31,10 +31,22 @@ feature 'space pages' do
   end
 
   scenario 'sign out button should redirect to home page' do
+    # sign_up_and_sign_in
     visit "/spaces/#{@space.id}"
     click_on 'Sign out'
 
     expect(page).to have_current_path('/')
+  end
+
+  scenario 'login button should redirect to login page' do
+    visit "/spaces/#{@space.id}"
+    click_on 'Sign out'
+    visit "/spaces/#{@space.id}"
+    click_on 'Login'
+    expect(page).to have_current_path('/login')
+    sign_up_and_sign_in('anothertest@test.com')
+    visit "/spaces/#{@space.id}"
+    expect(page).to have_button('Sign out')
   end
 
   scenario 'clicking request to book button redirect to request page' do

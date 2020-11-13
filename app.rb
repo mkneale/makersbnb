@@ -4,6 +4,7 @@ require 'sinatra/base'
 require './db_connection_setup'
 require './lib/space'
 require './lib/user'
+require './lib/booking'
 require 'uri'
 require 'sinatra'
 require 'sinatra/flash'
@@ -45,6 +46,7 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/spaces/:id' do
+    @customer = session[:customer]
     @space = Space.find(id: params[:id])
     erb :'spaces/id'
   end
@@ -79,6 +81,8 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/requests' do
+    @customer = session[:customer]
+    redirect('/login') if @customer.nil?
     @requests = Booking.all(customer_id: session[:customer].customer_id, confirmation: false)
     erb :'requests/index'
   end
