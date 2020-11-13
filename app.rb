@@ -89,6 +89,11 @@ class Makersbnb < Sinatra::Base
     erb :'requests/index'
   end
 
+  get "/requests/:id" do
+    @booking = Booking.find(id: params[:id])
+    erb :'requests/id/index'
+  end
+
   post '/sign_out' do
     session[:customer] = nil# do something in the db
     redirect '/'

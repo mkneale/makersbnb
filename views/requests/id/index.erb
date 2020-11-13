@@ -1,0 +1,4 @@
+<h1>Request for <%= Space.find(id: @booking.space_id).name %></h1>
+<p><%= @booking.confirmation == 'f' ? 'Unconfirmed' : 'Confirmed' %></p>
+<p><%= @booking.booking_date %></p>
+<p>From: <%= Customer.find(customer_id: @booking.customer_id).email %></p>
