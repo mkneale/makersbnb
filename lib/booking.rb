@@ -25,11 +25,18 @@ class Booking
     )
   end
 
-  def self.all(customer_id: nil, host_id: nil, confirmation:) # add in host_id
-    result = DBConnection.query("
-      SELECT * FROM booking
-      WHERE customer_id = '#{customer_id}' AND confirmation = '#{confirmation}'
-    ")
+  def self.all(customer_id: nil, host_id: nil, confirmation: nil) # add in host_id
+    if host_id.nil?
+      result = DBConnection.query("
+        SELECT * FROM booking
+        WHERE customer_id = '#{customer_id}' AND confirmation = '#{confirmation}'
+      ")
+    else
+      result = DBConnection.query("
+        SELECT booking.booking_id, space.customer_id, booking.booking_date, booking.confirmation, booking.space_id FROM booking, space
+        WHERE booking.space_id = space.space_id AND space.customer_id = '#{host_id}'
+      ")
+    end
     result.map { |result| Booking.new(
       id: result['booking_id'],
       customer_id: result['customer_id'],

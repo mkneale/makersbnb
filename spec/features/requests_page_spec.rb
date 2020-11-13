@@ -71,7 +71,7 @@ feature 'display my requests' do
     visit '/requests'
 
     expect(page).to have_content("#{@space.name}")
-    expect(page).to have_content("Not confirmed")
+    expect(page).to have_content("Unconfirmed")
     expect(page).to have_content("2020-11-20")
 
   end
